@@ -1,5 +1,5 @@
 <template>
-  <GlobalLayout title="主页">
+  <GlobalLayout title="聊天">
     
     <view class="index-page-content">
 

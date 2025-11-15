@@ -1,25 +1,23 @@
+// main.js
+import { createSSRApp } from "vue";
+import App from "./App.vue";
 
-// #ifndef VUE3
-import Vue from 'vue'
-import App from './App'
 
-Vue.config.productionTip = false
+// 1. 从 'pinia' 库中导入 createPinia
+import { createPinia } from "pinia";
 
-App.mpType = 'app'
+// 2. 创建一个 Pinia 实例
+const pinia = createPinia();
 
-const app = new Vue({
-    ...App
-})
-app.$mount()
-// #endif
 
-// #ifdef VUE3
-import { createSSRApp } from 'vue'
-import App from './App.vue'
+
 export function createApp() {
-  const app = createSSRApp(App)
+  const app = createSSRApp(App);
+
+
+  app.use(pinia);
+
   return {
-    app
-  }
+    app,
+  };
 }
-// #endif

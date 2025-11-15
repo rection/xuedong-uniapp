@@ -1,5 +1,5 @@
 <template>
-  <GlobalLayout title="主页">
+  <GlobalLayout title="创建">
     
     <view class="index-page-content">
 
