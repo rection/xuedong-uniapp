@@ -16,7 +16,10 @@
             "autoclose" : true,
             "delay" : 0
         },
-        "modules" : {},
+        "modules" : {
+            "Geolocation" : {},
+            "Maps" : {}
+        },
         /* 模块配置 */
         "distribute" : {
             /* 应用发布信息 */
@@ -42,7 +45,23 @@
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "geolocation" : {
+                    "amap" : {
+                        "name" : "amapY8hdfEw2",
+                        "__platform__" : [ "ios", "android" ],
+                        "appkey_ios" : "db740f25469f32aa2f63f5e0dd5f230a",
+                        "appkey_android" : "db740f25469f32aa2f63f5e0dd5f230a"
+                    }
+                },
+                "maps" : {
+                    "amap" : {
+                        "name" : "amapY8hdfEw2",
+                        "appkey_ios" : "db740f25469f32aa2f63f5e0dd5f230a",
+                        "appkey_android" : "db740f25469f32aa2f63f5e0dd5f230a"
+                    }
+                }
+            }
         }
     },
     /* SDK配置 */
@@ -50,11 +69,17 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-        "appid" : "",
+        "appid" : "wx307b91a5a1da352c",
         "setting" : {
             "urlCheck" : false
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {}
     },
-    "vueVersion" : "3"
+    "vueVersion" : "3",
+    "h5" : {
+        "sdkConfigs" : {
+            "maps" : {}
+        }
+    }
 }

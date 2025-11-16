@@ -1,3 +1,4 @@
+//复用组件
 <template>
   <view class="page-container">
     <CustomNavbar :title="title" />

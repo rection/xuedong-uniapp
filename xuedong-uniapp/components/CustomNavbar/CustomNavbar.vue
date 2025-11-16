@@ -1,3 +1,4 @@
+//导航栏
 <template>
   <view class="navbar-container" :style="{ paddingTop: safeAreaTop + 'px' }">
     <view style="height: 20px;"></view>
@@ -19,7 +20,7 @@
 
 <script setup>
 import { useDrawerStore } from '@/stores/drawer.js';
-// 获取屏幕边界信息，用于适配刘海屏
+//获取屏幕边界
 const { safeAreaInsets } = uni.getSystemInfoSync();
 const safeAreaTop = safeAreaInsets.top;
 

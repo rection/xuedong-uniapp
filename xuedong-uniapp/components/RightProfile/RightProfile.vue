@@ -17,12 +17,23 @@
     </view>
     
     <view class="menu-list">
-      <view class="menu-item">个人资料</view>
-      <view class="menu-item">设置</view>
+      <view class="item-button" @click="goTomy">个人资料</view>
+      <view class="item-button" @click="goToSetting">设置</view>
     </view>
   </view>
 </template>
-
+<script setup>
+	const goTomy = () =>{
+		uni.navigateTo({
+			url:"/pages-my/my/my"
+		})
+	}
+	const goToSetting = () =>{
+		uni.navigateTo({
+			url:"/pages-my/setting/setting"
+		})
+	}
+</script>
 <style lang="scss" scoped>
 .right-profile-container {
   padding: 20px;
@@ -57,7 +68,7 @@
   }
 }
 .menu-list {
-  .menu-item {
+  .item-button {
     font-size: 16px;
     padding: 15px 0;
     border-bottom: 1px solid #f0f0f0;

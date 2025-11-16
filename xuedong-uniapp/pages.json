@@ -51,7 +51,69 @@
 		}
 	},
 	"subPackages": [
-		
+		{
+				"root": "pages-sports",
+				"pages": [{
+						"path": "sports/rank",
+						"style": {
+							"navigationBarTitleText": "排行榜",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "sports/run",
+						"style": {
+							"navigationBarTitleText": "阳光跑",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "sports/runMap",
+						"style": {
+							"navigationBarTitleText": "",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "sports/records",
+						"style": {
+							"navigationBarTitleText": "跑步记录",
+							"enablePullDownRefresh": false
+						}
+					}
+				]
+			},
+			{
+				"root": "pages-my",
+				"pages": [
+					{
+						"path": "my/my",
+						"style": {
+							"navigationBarTitleText": "个人资料",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "setting/setting",
+						"style": {
+							"navigationBarTitleText": "设置",
+							"enablePullDownRefresh": false
+						}
+					}
+				]
+			},
+			{
+				"root": "pages-chat",
+				"pages": [
+					{
+						"path": "chat/chat",
+						"style": {
+							"navigationBarTitleText": "聊天",
+							"enablePullDownRefresh": false
+						}
+					}
+				]
+			}
 	],
 	"tabBar": {
 		"color": "#999999",
