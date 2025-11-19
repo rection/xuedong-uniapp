@@ -1,5 +1,13 @@
 {
-	"pages": [	    {
+	"pages": [	    
+		{
+			"path": "pages/Login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+			
+		},
+		{
 	      "path": "pages/index/index",
 	      "style": {
 	        "navigationBarTitleText": "主页",
@@ -38,7 +46,15 @@
 			"navigationStyle": "custom",
 			"enablePullDownRefresh": true
 	      }
-	    }
+	    },
+		{
+			"path": "pages/detail/index",
+			"style": {
+			        "navigationBarTitleText": "帖子详情",
+			        "enablePullDownRefresh": false,
+			        "navigationStyle": "default" 
+			      }
+		}
 	
 	],
 	"globalStyle": {
