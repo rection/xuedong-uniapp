@@ -1,5 +1,5 @@
 <template>
-  <GlobalLayout title="聊天">
+  <GlobalLayout title="学习">
     <view class="box">
 		<view class="top-box">
 			<view class="top-massage">消息</view>

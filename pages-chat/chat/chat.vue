@@ -1,87 +1,102 @@
 <template>
-  <view class="chat-container">
-    <view class="info">
-      <text>正在和 {{ chatUserName }} (ID: {{ chatUserId }}) 聊天</text>
+  <view class="container">
+    <view v-if="loading">加载单词中...</view>
+
+    <view v-else-if="currentWord" class="card">
+      <text class="word">{{ currentWord.word }}</text>
+      <text class="phonetic">/{{ currentWord.phonetic }}/</text>
+      
+      <view class="definition-box">
+        <text v-if="showDefinition" class="definition">{{ currentWord.translation }}</text>
+        <view v-else class="mask" @click="showDefinition = true">点击查看释义</view>
+      </view>
+
+      <view class="action-area" v-if="showDefinition">
+        <button type="warn" @click="handleResult(0)">不认识 (陌生)</button>
+        <button type="primary" @click="handleResult(1)">认识 (已掌握)</button>
+      </view>
     </view>
-    
-    <scroll-view class="chat-messages" :scroll-y="true">
-      </scroll-view>
-    
-    <view class="chat-input-bar">
-      <input type="text" placeholder="发送消息" />
-      <button size="mini">发送</button>
+
+    <view v-else>
+      <text>今日任务已完成！🎉</text>
     </view>
-    
   </view>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { onLoad } from '@dcloudio/uni-app';
+import { ref, onMounted } from 'vue'
 
-// 用于存储从路由参数中获取的对方用户信息
-const chatUserId = ref('');
-const chatUserName = ref('');
+const db = uniCloud.database()
+const currentWord = ref(null)
+const showDefinition = ref(false)
+const loading = ref(true)
 
-// uniapp 的页面生命周期函数，在页面加载时触发
-onLoad((options) => {
-  // 1. options 对象包含了从上一个页面 navigateTo 传来的所有 URL 参数
-  console.log('聊天页面加载，收到参数:', options);
-
-  if (options.id && options.name) {
-    chatUserId.value = options.id;
-    chatUserName.value = decodeURIComponent(options.name); // 解码名字
+// 1. 获取一个“我没背过”或者“该复习”的单词
+const fetchNextWord = async () => {
+  loading.value = true
+  showDefinition.value = false
+  
+  try {
+    // 逻辑 A：先查记录表，找该复习的词（这里简化为先只找新词）
+    // 实际项目中，这里应该先查询 user_word_records 表
     
-    // 2. 关键：动态设置导航栏标题为对方的名字
-    uni.setNavigationBarTitle({
-      title: chatUserName.value
-    });
-  } else {
-    console.error('缺少聊天对象ID或名字');
-    // 实际应用中可能需要提示错误或返回上一页
+    // 逻辑 B：如果没有该复习的，就从 dict_cet4 随机拿一个没背过的
+    // 使用 JQL 的联表查询或临时表方案（这里演示最简单的随机抽取方案）
+    const res = await db.collection('dict_cet4')
+      .limit(1)
+      .get({ getOne: true }) // 随机获取一个，实际需配合 .sample() 或 skip
+      
+    // *注意：真实场景需过滤掉 user_word_records 中已存在的 word_id*
+    
+    if (res.result.data) {
+      currentWord.value = res.result.data
+    } else {
+      currentWord.value = null
+    }
+  } catch (e) {
+    console.error('获取失败', e)
+    uni.showToast({ title: '网络错误', icon: 'none' })
+  } finally {
+    loading.value = false
   }
+}
 
-  // 3. 在这里，你可以使用 chatUserId.value 去你的 API 
-  //    加载与该用户的历史聊天记录
-  // fetchChatHistory(chatUserId.value);
-});
+// 2. 提交学习结果
+const handleResult = async (status) => {
+  // status: 0 (不认识), 1 (认识)
+  
+  // 简单算法：如果是“不认识”，下次复习时间是 5 分钟后；“认识”则是 1 天后
+  const nextReview = status === 0 ? Date.now() + 300000 : Date.now() + 86400000
+  
+  try {
+    // 写入或更新云端数据库
+    await db.collection('user_word_records').add({
+      word_id: currentWord.value._id,
+      status: status,
+      next_review_time: nextReview,
+      create_date: Date.now()
+    })
+    
+    uni.showToast({ title: status === 1 ? '太棒了' : '继续加油', icon: 'none' })
+    
+    // 自动跳下一个
+    fetchNextWord()
+    
+  } catch (e) {
+    console.error('保存进度失败', e)
+  }
+}
 
+onMounted(() => {
+  fetchNextWord()
+})
 </script>
 
-<style lang="scss" scoped>
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; // 占满整个屏幕
-}
-.info {
-  padding: 20rpx;
-  text-align: center;
-  color: #999;
-  font-size: 24rpx;
-  background-color: #f7f7f7;
-}
-
-// 示例样式
-.chat-messages {
-  flex: 1; // 占据剩余空间
-  background-color: #f4f4f4;
-  padding: 20rpx;
-}
-
-.chat-input-bar {
-  display: flex;
-  align-items: center;
-  padding: 20rpx;
-  border-top: 1rpx solid #e0e0e0;
-  background-color: #ffffff;
-  
-  input {
-    flex: 1;
-    background-color: #f7f7f7;
-    border-radius: 10rpx;
-    padding: 16rpx 20rpx;
-    margin-right: 20rpx;
-  }
-}
+<style>
+/* 简单的样式 */
+.container { padding: 40px; text-align: center; }
+.word { font-size: 40px; font-weight: bold; display: block; margin-bottom: 10px; }
+.phonetic { color: #666; font-family: monospace; display: block; margin-bottom: 30px; }
+.mask { background: #eee; padding: 20px; color: #999; border-radius: 8px; }
+.action-area { margin-top: 40px; display: flex; gap: 20px; }
 </style>
