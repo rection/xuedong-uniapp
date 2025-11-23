@@ -68,18 +68,40 @@
     "quickapp" : {},
     /* 快应用特有相关 */
     "mp-weixin" : {
-        /* 小程序特有相关 */
         "appid" : "wx307b91a5a1da352c",
         "setting" : {
             "urlCheck" : false
         },
-        "usingComponents" : true,
-        "permission" : {}
+        // 1. 权限描述（告诉用户为什么要定位）
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "你的位置信息将用于记录跑步轨迹"
+            },
+            "scope.userLocationBackground" : {
+                "desc" : "你的位置信息将用于后台记录跑步轨迹"
+            }
+        },
+        // 2. 关键修复：必须在这里列出你要用的API接口！
+        "requiredPrivateInfos" : [
+            "getLocation",
+            "onLocationChange",
+            "startLocationUpdateBackground",
+            "startLocationUpdate"
+        ]
     },
     "vueVersion" : "3",
     "h5" : {
         "sdkConfigs" : {
-            "maps" : {}
+            "maps" : {
+                "amap" : {
+                    "key" : "2479ba2eeae7c234f38480c35663b59e",
+                    "securityJsCode" : "ef94ac5c940a1a369139556550413d43",
+                    "serviceHost" : ""
+                }
+            }
+        },
+        "router" : {
+            "mode" : "hash"
         }
     }
 }

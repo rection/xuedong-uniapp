@@ -1,0 +1,5 @@
+
+.back{
+		margin-top: 30rpx;
+		padding-left: 30rpx;
+}

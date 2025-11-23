@@ -1,211 +1,234 @@
 <template>
   <GlobalLayout title="学习">
-    <view class="box">
-		<view class="top-box">
-			<view class="top-massage">消息</view>
-		</view>
-		<view class="second-box">
-			<view class="yidu-button">
-				已读
-			</view>
-			<view class="weidu-button">
-				未读
-			</view>
-		</view>
-			<view class="message-list-container">
-			    <view
-			      class="message-item"
-			      v-for="item in conversationList"
-			      :key="item.id"
-			      @click="goToChat(item)"
-			    >
-			      <image class="avatar" :src="item.user.avatarUrl" mode="aspectFill" />
-			
-			      <view class="content">
-			        <view class="name">{{ item.user.name }}</view>
-			        <view class="last-message">{{ item.lastMessage }}</view>
-			      </view>
-			
-			      <view class="meta">
-			        <view class="time">{{ item.time }}</view>
-			        <view class="unread-count" v-if="item.unreadCount > 0">
-			          {{ item.unreadCount }}
-			        </view>
-			      </view>
-			    </view>
-			  </view>
-	</view>
+    <view class="page-container" @touchmove.stop.prevent="() => {}">
+      <image class="bg-image" src="/static/images/yu.jpg" mode="aspectFill"></image>
 
+      <view class="content-layer">
+
+        <view class="header-section">
+          <view class="avatar-box">
+            <view class="avatar-circle">
+              <image src="/static/images/yu.jpg" mode="aspectFit" class="avatar-img"></image>
+            </view>
+            <uni-badge class="notification-badge" text="2" type="error" absolute="rightTop" :offset="[-5, -5]"></uni-badge>
+          </view>
+        </view>
+
+        <view class="center-section">
+          <view class="check-in-card" @click="onCheckInClick">
+            <view class="icon-area">
+              <uni-icons :type="signStore.isSigned ? 'checkbox-filled' : 'calendar-filled'" size="32" color="#333"></uni-icons>
+            </view>
+            
+            <view class="text-area">
+               <text class="card-title" v-if="!signStore.isSigned">签到</text>
+               <text class="card-title signed-text" v-else>已签到 <text class="days-highlight">{{ signStore.signDays }}</text> 天</text>
+            </view>
+
+            <text class="card-date">{{ signStore.formattedDate }}</text>
+          </view>
+        </view>
+
+        <view class="stats-section">
+          <view class="stat-card">
+            <view class="stat-label" @click="learnCi">Learn</view>
+            <view class="stat-value review-color">{{ learned }}</view>
+          </view>
+          <view class="stat-card">
+            <view class="stat-label" @click="reviewCi">review</view>
+            <view class="stat-value review-color">{{ reviewed }}</view>
+          </view>
+        </view>
+
+      </view>
+    </view>
   </GlobalLayout>
 </template>
 
 <script setup>
-import { useTabDrawerCloser } from '@/composables/useTabDrawerCloser.js';
-import { ref } from 'vue';
-useTabDrawerCloser();
-const conversationList = ref([
-  {
-    id: 'conv_1', // 会话ID
-    user: {
-      id: 'user_001', // 对方用户ID
-      name: '张三',
-      avatarUrl: '/static/images/avatar1.png', // 确保这个路径在你的项目中存在
-    },
-    lastMessage: '好的，明天见。',
-    time: '09:30',
-    unreadCount: 3,
-  },
-  {
-    id: 'conv_2',
-    user: {
-      id: 'user_002',
-      name: '李四',
-      avatarUrl: '/static/images/avatar2.png',
-    },
-    lastMessage: '你文件发我一下。',
-    time: '昨天',
-    unreadCount: 0,
-  },
-  // ...更多会话
-]);
+  import { ref } from 'vue';
+  import { useTabDrawerCloser } from '@/composables/useTabDrawerCloser.js';
+  // 引入刚才创建的 Pinia Store
+  import { useSignStore } from '@/stores/signStore.js';
 
-// 2. 点击消息栏的跳转方法
-const goToChat = (conversation) => {
-  const targetUser = conversation.user;
-  
-  // 我们需要把对方的用户ID和名字传递给聊天页面
-  // 名字可以用来设置聊天页的导航栏标题
-  const url = `/pages/chat/chat?id=${targetUser.id}&name=${encodeURIComponent(targetUser.name)}`;
-  
-  console.log('跳转到:', );
-  
-  uni.navigateTo({
-    url: "/pages-chat/chat/chat",
-    fail: (err) => {
-      console.error('跳转失败', err);
+  useTabDrawerCloser();
+
+  // 初始化 Store
+  const signStore = useSignStore();
+
+  let learned = ref(1); 
+  let reviewed = ref(1);
+
+  // 点击签到逻辑
+  const onCheckInClick = () => {
+    // 调用 Store 的方法
+    const success = signStore.handleCheckIn();
+    
+    if (success) {
+      uni.showToast({ title: '签到成功', icon: 'success' });
+    } else {
+      uni.showToast({ title: '今日已签到啦~', icon: 'none' });
     }
-  });
-};
+  };
+
+  const learnCi = () => {
+    setTimeout(() => {
+      uni.navigateTo({ url: '/pages-chat/learn/learn' });
+    }, 500);
+  };
+
+  const reviewCi = () => {
+    setTimeout(() => {
+      uni.navigateTo({ url: '/pages-chat/review/review' });
+    }, 500);
+  };
 </script>
 
 <style lang="scss" scoped>
-.box{
-	display: flex;
-	flex-direction: column;
-	height:100vh;
-	background-color: #ffffff;
-}
-.top-box{
-	margin-top: 10rpx;
-	height: 52px;
-}
-.top-massage{
-	padding-left: 30rpx;
-	font-size: 44rpx;
-	font-weight: 700;
-	display: block;
-	margin-bottom: 20rpx;
-}
-.yidu-button{
-background-color: #ffffff; 
-    color: #000000;         
-    
-    border-radius: 50rpx;      
-    border: 1rpx solid #dcdcdc; 
-    padding: 12rpx 35rpx;      
-    margin-right: 25rpx;      
-    font-size: 28rpx;
-    font-weight: normal;
-}
-.weidu-button{
-background-color: #ffffff;
-    color: #000000;           
-    border-radius: 50rpx;     
-    border: 1rpx solid #dcdcdc; 
-    padding: 12rpx 35rpx;     
-    margin-right: 25rpx;       
-    font-size: 28rpx;
-    font-weight: normal;
-}
-.second-box{
-	display: flex;
-    flex-direction: row;
-    padding: 10rpx 20rpx; /* (可选) 给容器一点内边距 */
-	
-}
-.message-list-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.message-item {
-  display: flex;
-  align-items: center;
-  padding: 24rpx;
-  border-bottom: 1rpx solid #f0f0f0;
-  background-color: #ffffff;
-  
-  // 增加点击效果
-  &:active {
-    background-color: #f9f9f9;
+  .page-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
   }
-}
 
-.avatar {
-  width: 96rpx;
-  height: 96rpx;
-  border-radius: 16rpx;
-  margin-right: 20rpx;
-  background-color: #eee; // 图像加载前的占位符
-}
+  .bg-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
 
-.content {
-  flex: 1; // 占据剩余空间
-  min-width: 0; // 允许flex-shrink
-}
+  .content-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    /* 关键：让头部、中间、底部均匀分布，确保底部肯定在最下面 */
+    justify-content: space-between; 
+    padding: 0 40rpx;
+    box-sizing: border-box;
+    /* 底部安全区，防止被 iPhone 横条遮挡 */
+    padding-bottom: calc(40rpx + env(safe-area-inset-bottom)); 
+  }
 
-.name {
-  font-size: 32rpx;
-  color: #333;
-  font-weight: 500;
-  // 防止名字过长
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+  /* 头部区域 */
+  .header-section {
+    /* 调整这里的值可以让圆标更往下 */
+    margin-top: 100rpx; 
+    display: flex;
+    flex-shrink: 0; /* 防止被挤压 */
+  }
 
-.last-message {
-  font-size: 28rpx;
-  color: #999;
-  margin-top: 8rpx;
-  // 防止消息过长
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+  .avatar-box {
+    position: relative;
+    width: 80rpx;
+    height: 80rpx;
+  }
 
-.meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-left: 20rpx;
-  color: #999;
-  font-size: 24rpx;
-}
+  .avatar-circle {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
 
-.time {
-  margin-bottom: 8rpx;
-}
+  .avatar-img {
+    width: 60%;
+    height: 60%;
+  }
 
-.unread-count {
-  background-color: #fa3534;
-  color: #ffffff;
-  font-size: 22rpx;
-  min-width: 36rpx;
-  height: 36rpx;
-  line-height: 36rpx;
-  text-align: center;
-  border-radius: 18rpx;
-  padding: 0 10rpx; // 左右留白，让单个数字也好看
-}
+  /* 中间区域 */
+  .center-section {
+    flex: 1; /* 占据所有剩余空间 */
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+  }
+
+  .check-in-card {
+    width: 280rpx;
+    height: 280rpx;
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    border-radius: 40rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.05);
+    transition: transform 0.1s;
+  }
+  
+  .check-in-card:active {
+    transform: scale(0.98);
+  }
+
+  .icon-area {
+    margin-bottom: 10rpx;
+  }
+
+  .card-title {
+    font-size: 32rpx;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 8rpx;
+  }
+  
+  .signed-text {
+    font-size: 28rpx;
+  }
+  
+  .days-highlight {
+    color: #ff8c00;
+    margin: 0 4rpx;
+    font-size: 34rpx;
+  }
+
+  .card-date {
+    font-size: 24rpx;
+    color: #555;
+  }
+
+  /* 底部统计区域 */
+  .stats-section {
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0; /* 防止被挤压 */
+    /* 不需要 margin-bottom 了，由 content-layer 的 padding-bottom 控制 */
+  }
+
+  .stat-card {
+    width: 48%;
+    height: 160rpx;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 24rpx;
+    padding: 30rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .stat-label {
+    font-size: 30rpx;
+    font-weight: 600;
+    color: #222;
+  }
+
+  .stat-value {
+    font-size: 40rpx;
+    font-weight: bold;
+    color: #ff8c00;
+  }
 </style>

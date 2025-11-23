@@ -1,0 +1,82 @@
+
+.left-menu-container.data-v-242799f8 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff;
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+}
+
+/* --- 打卡卡片 3D 样式核心 --- */
+.checkin-section.data-v-242799f8 {
+  margin-bottom: 40rpx; /* 与下方菜单隔开 */
+}
+.checkin-card.data-v-242799f8 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* 漂亮的渐变紫 */
+  border-radius: 20rpx;
+  padding: 30rpx;
+  color: white;
+  position: relative;
+  transition: all 0.1s ease;
+  
+  /* 🌟 核心：立体阴影 🌟 */
+  /* 下面的阴影颜色较深，模拟厚度 */
+  box-shadow: 0 8rpx 0 #5a3b85, 0 15rpx 20rpx rgba(0,0,0,0.2);
+  border: 2px solid rgba(255,255,255,0.2); /* 描边 */
+}
+
+/* 激活状态（按下去的效果） */
+.checkin-card.clicked.data-v-242799f8 {
+  transform: translateY(8rpx); /* 向下移动，模拟被按下 */
+  box-shadow: 0 0 0 #5a3b85, 0 0 0 rgba(0,0,0,0); /* 阴影消失 */
+}
+
+/* 已打卡状态 (变灰或变绿) */
+.checkin-card.is-checked.data-v-242799f8 {
+  background: linear-gradient(135deg, #42e695 0%, #3bb2b8 100%);
+  box-shadow: 0 8rpx 0 #2a8a8f, 0 15rpx 20rpx rgba(0,0,0,0.1);
+}
+.checkin-card.is-checked.clicked.data-v-242799f8 {
+  box-shadow: 0 0 0 #2a8a8f;
+}
+.card-content.data-v-242799f8 {
+  display: flex;
+  align-items: center;
+}
+.checkin-icon.data-v-242799f8 {
+  font-size: 60rpx;
+  margin-right: 20rpx;
+}
+.text-box.data-v-242799f8 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.checkin-title.data-v-242799f8 {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 5rpx;
+}
+.checkin-days.data-v-242799f8 {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+.checkin-btn-text.data-v-242799f8 {
+  font-size: 32rpx;
+  font-weight: bold;
+  background: rgba(255,255,255,0.2);
+  padding: 10rpx 20rpx;
+  border-radius: 30rpx;
+}
+
+/* --- 下方菜单样式示例 --- */
+.menu-list.data-v-242799f8 {
+  flex: 1; /* 占据剩余空间 */
+}
+.menu-item.data-v-242799f8 {
+  padding: 30rpx 20rpx;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 30rpx;
+  color: #333;
+}

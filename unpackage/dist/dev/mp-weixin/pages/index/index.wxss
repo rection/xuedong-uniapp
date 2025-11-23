@@ -1,0 +1,13 @@
+/* 水平间距 */
+/* 水平间距 */
+.home-container.data-v-1cf27b2a {
+  background-color: #f5f5f5;
+  /* 灰色背景区分卡片 */
+  padding: 20rpx;
+  min-height: 100vh;
+}
+.empty-tip.data-v-1cf27b2a {
+  text-align: center;
+  color: #999;
+  margin-top: 100rpx;
+}

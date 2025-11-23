@@ -1,0 +1,12 @@
+
+/* 简单的样式 */
+.container { padding: 40px; text-align: center;
+}
+.word { font-size: 40px; font-weight: bold; display: block; margin-bottom: 10px;
+}
+.phonetic { color: #666; font-family: monospace; display: block; margin-bottom: 30px;
+}
+.mask { background: #eee; padding: 20px; color: #999; border-radius: 8px;
+}
+.action-area { margin-top: 40px; display: flex; gap: 20px;
+}

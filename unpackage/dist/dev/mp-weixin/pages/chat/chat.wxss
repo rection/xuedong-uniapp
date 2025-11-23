@@ -1,0 +1,139 @@
+/* 水平间距 */
+/* 水平间距 */
+.page-container.data-v-0a633310 {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.bg-image.data-v-0a633310 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.content-layer.data-v-0a633310 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  /* 关键：让头部、中间、底部均匀分布，确保底部肯定在最下面 */
+  justify-content: space-between;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  /* 底部安全区，防止被 iPhone 横条遮挡 */
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+/* 头部区域 */
+.header-section.data-v-0a633310 {
+  /* 调整这里的值可以让圆标更往下 */
+  margin-top: 100rpx;
+  display: flex;
+  flex-shrink: 0;
+  /* 防止被挤压 */
+}
+.avatar-box.data-v-0a633310 {
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+}
+.avatar-circle.data-v-0a633310 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.avatar-img.data-v-0a633310 {
+  width: 60%;
+  height: 60%;
+}
+
+/* 中间区域 */
+.center-section.data-v-0a633310 {
+  flex: 1;
+  /* 占据所有剩余空间 */
+  display: flex;
+  align-items: center;
+  /* 垂直居中 */
+  justify-content: center;
+  /* 水平居中 */
+}
+.check-in-card.data-v-0a633310 {
+  width: 280rpx;
+  height: 280rpx;
+  background-color: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.1s;
+}
+.check-in-card.data-v-0a633310:active {
+  transform: scale(0.98);
+}
+.icon-area.data-v-0a633310 {
+  margin-bottom: 10rpx;
+}
+.card-title.data-v-0a633310 {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+.signed-text.data-v-0a633310 {
+  font-size: 28rpx;
+}
+.days-highlight.data-v-0a633310 {
+  color: #ff8c00;
+  margin: 0 4rpx;
+  font-size: 34rpx;
+}
+.card-date.data-v-0a633310 {
+  font-size: 24rpx;
+  color: #555;
+}
+
+/* 底部统计区域 */
+.stats-section.data-v-0a633310 {
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  /* 防止被挤压 */
+  /* 不需要 margin-bottom 了，由 content-layer 的 padding-bottom 控制 */
+}
+.stat-card.data-v-0a633310 {
+  width: 48%;
+  height: 160rpx;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.stat-label.data-v-0a633310 {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #222;
+}
+.stat-value.data-v-0a633310 {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #ff8c00;
+}

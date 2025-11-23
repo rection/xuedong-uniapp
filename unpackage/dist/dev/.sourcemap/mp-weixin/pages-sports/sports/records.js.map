@@ -1,0 +1,1 @@
+{"version":3,"file":"records.js","sources":["D:/HBuilderX/plugins/uniapp-cli-vite/uniPage:/cGFnZXMtc3BvcnRzXHNwb3J0c1xyZWNvcmRzLnZ1ZQ"],"sourcesContent":["import MiniProgramPage from 'C:/Users/ffx/OneDrive/Desktop/项目源码/xuedong-uniapp/pages-sports/sports/records.vue'\nwx.createPage(MiniProgramPage)"],"names":[],"mappings":";;;;;;;AACA,GAAG,WAAW,eAAe;"}

@@ -1,0 +1,206 @@
+/* 水平间距 */
+/* 水平间距 */
+.rank .bg .g {
+  position: absolute;
+  top: 130rpx;
+  left: 50%;
+  margin-left: -200rpx;
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 10% 10%;
+  background-color: rgba(185, 186, 181, 0.5);
+  z-index: 3;
+}
+.rank .bg .b {
+  position: absolute;
+  top: 130rpx;
+  left: 50%;
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 10% 10%;
+  background-color: rgba(185, 186, 181, 0.5);
+  z-index: 3;
+}
+.rank .cg {
+  background-image: linear-gradient(to bottom, #c2c3bd, #d9dad8);
+}
+.rank .cb {
+  background-image: linear-gradient(to bottom, #d9dad8, #939392);
+}
+.rank .range .range_box {
+  position: fixed;
+  right: 20rpx;
+  top: 20rpx;
+  z-index: 5;
+}
+.rank .range .range_box .range_box_pic {
+  height: 70rpx;
+  width: 70rpx;
+}
+.rank .rank_top {
+  height: 100rpx;
+  width: 750rpx;
+  position: fixed;
+  z-index: 4;
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-image: linear-gradient(to top, #fecc6f, #ffcb71);
+}
+.rank .rank_top .rank_top_mile {
+  display: inline-block;
+  padding-right: 35rpx;
+  padding-top: 20rpx;
+}
+.rank .changeTop {
+  font-size: 50rpx;
+}
+.rank .rank_mid {
+  background-image: linear-gradient(to top, #f782a9, #ffcb71);
+  height: 900rpx;
+  width: 100%;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+.rank .rank_mid .rank_2 {
+  height: 270rpx;
+  width: 25%;
+  background-color: #ffe18b;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -37.5%;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.rank .rank_mid .rank_2 .rank_m2_km {
+  font-size: 30rpx;
+  margin: 20rpx;
+  color: #fff;
+}
+.rank .rank_mid .rank_2 .rank_m2_km .rank_m2_user {
+  width: 150rpx;
+  height: 250rpx;
+  font-size: 35rpx;
+  overflow: hidden;
+  position: absolute;
+  top: -260rpx;
+  left: 10rpx;
+  color: #000;
+}
+.rank .rank_mid .rank_1 {
+  height: 330rpx;
+  width: 25%;
+  background-color: #FF6347;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -12.5%;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.rank .rank_mid .rank_1 .rank_m1_km {
+  font-size: 30rpx;
+  margin: 20rpx;
+  color: #fff;
+}
+.rank .rank_mid .rank_1 .rank_m1_km .rank_m1_user {
+  width: 150rpx;
+  height: 250rpx;
+  font-size: 35rpx;
+  margin: 20rpx;
+  position: absolute;
+  top: -260rpx;
+  left: 10rpx;
+  color: #000;
+}
+.rank .rank_mid .rank_3 {
+  height: 240rpx;
+  width: 25%;
+  background-color: #76d4eb;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: 12.5%;
+  border-radius: 20rpx 20rpx 0 0;
+}
+.rank .rank_mid .rank_3 .rank_m3_km {
+  font-size: 30rpx;
+  margin: 20rpx;
+  color: #fff;
+}
+.rank .rank_mid .rank_3 .rank_m3_km .rank_m3_user {
+  width: 150rpx;
+  height: 250rpx;
+  font-size: 35rpx;
+  margin: 20rpx;
+  position: absolute;
+  top: -260rpx;
+  left: 10rpx;
+  color: #000;
+}
+.box {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 100rpx;
+  line-height: 80rpx;
+  padding: 10rpx 0;
+  padding-left: 20rpx;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+.box .luc {
+  display: flex;
+  flex-direction: row;
+  margin-left: 100rpx;
+}
+.box .luc image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 40rpx;
+  /* background-color: #76d4eb; */
+}
+.box .km {
+  position: absolute;
+  right: 30rpx;
+}
+.boxT {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 100rpx;
+  line-height: 80rpx;
+  padding: 10rpx 0;
+  padding-left: 0rpx;
+  border-bottom: 1rpx solid #E0E0E0;
+  background-color: papayawhip;
+}
+.boxT .lucT {
+  display: flex;
+  flex-direction: row;
+}
+.boxT .lucT image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  /* background-color: #76d4eb; */
+}
+.boxT .shangBang {
+  font-size: 25rpx;
+  color: mediumpurple;
+}
+.boxT .km {
+  position: absolute;
+  right: 30rpx;
+}
+.boxT .m {
+  position: absolute;
+  right: 20rpx;
+  font-size: 30rpx;
+}

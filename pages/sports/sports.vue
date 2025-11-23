@@ -60,12 +60,12 @@ useTabDrawerCloser()
 	}
 
 
-	const token = uni.getStorageSync('token')
-	if (!token) {
-		uni.redirectTo({
-			url: '/pages/login/login'
-		})
-	} 
+	// const token = uni.getStorageSync('token')
+	// if (!token) {
+	// 	uni.redirectTo({
+	// 		url: '/pages/login/login'
+	// 	})
+	// } 
 
 
 	function goRun() {

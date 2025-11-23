@@ -1,0 +1,1 @@
+{"version":3,"file":"setting.js","sources":["D:/HBuilderX/plugins/uniapp-cli-vite/uniPage:/cGFnZXMtbXlcc2V0dGluZ1xzZXR0aW5nLnZ1ZQ"],"sourcesContent":["import MiniProgramPage from 'C:/Users/ffx/OneDrive/Desktop/项目源码/xuedong-uniapp/pages-my/setting/setting.vue'\nwx.createPage(MiniProgramPage)"],"names":[],"mappings":";;;;;;;AACA,GAAG,WAAW,eAAe;"}

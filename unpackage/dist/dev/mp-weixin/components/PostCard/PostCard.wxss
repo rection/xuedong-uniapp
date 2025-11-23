@@ -1,0 +1,112 @@
+
+.post-card.data-v-f4466858 {
+  background-color: #fff;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+}
+.header.data-v-f4466858 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+.user-info.data-v-f4466858 {
+  display: flex;
+  align-items: center;
+}
+.avatar.data-v-f4466858, .avatar-placeholder.data-v-f4466858 {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+.avatar-placeholder.data-v-f4466858 {
+  background: #e1e1e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #666;
+}
+.info-text.data-v-f4466858 {
+  display: flex;
+  flex-direction: column;
+}
+.author.data-v-f4466858 {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+}
+.time.data-v-f4466858 {
+  font-size: 22rpx;
+  color: #999;
+}
+.category-tag.data-v-f4466858 {
+  font-size: 20rpx;
+  background-color: #eff6ff;
+  color: #007aff;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-weight: bold;
+}
+.title.data-v-f4466858 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 12rpx;
+  display: block;
+}
+.body-text.data-v-f4466858 {
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 16rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 底部操作栏样式 */
+.footer.data-v-f4466858 {
+  display: flex;
+  align-items: center;
+  border-top: 1rpx solid #f0f0f0;
+  padding-top: 20rpx;
+  margin-top: 10rpx;
+}
+.action-btn.data-v-f4466858 {
+  display: flex;
+  align-items: center;
+  margin-right: 40rpx;
+  color: #888;
+  font-size: 26rpx;
+  /* 增加点击热区，更容易点中 */
+  padding: 10rpx 0;
+}
+
+/* 点赞后的样式 */
+.active-icon.data-v-f4466858, .active-text.data-v-f4466858 {
+  color: #ff4d4f; /* 红色 */
+  font-weight: bold;
+}
+.icon.data-v-f4466858 {
+  margin-right: 8rpx;
+  font-size: 30rpx;
+}
+
+/* 图片网格 */
+.image-grid.data-v-f4466858 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-bottom: 20rpx;
+}
+.post-img.data-v-f4466858 {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 8rpx;
+  background: #eee;
+}

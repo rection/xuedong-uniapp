@@ -1,0 +1,90 @@
+/* 水平间距 */
+/* 水平间距 */
+.map {
+  position: relative;
+}
+.map .map-section .run {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 700rpx;
+  font-size: 48rpx;
+  color: white;
+  font-weight: 600;
+}
+.map .map-section .run .run-little,
+.map .map-section .run .run-more {
+  width: 250rpx;
+  height: 360rpx;
+  padding-top: 25rpx;
+}
+.map .map-section .run .run-little-go,
+.map .map-section .run .run-more-go {
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 50%;
+  background-color: white;
+  line-height: 150rpx;
+  text-align: center;
+}
+.map .map-section .run .run-little {
+  padding-left: 70rpx;
+  border-radius: 0 35rpx 35rpx 0;
+  background: linear-gradient(to top, #b49dff, #5e59ff);
+}
+.map .map-section .run .run-little .run-little-go {
+  color: purple;
+  margin-top: 30rpx;
+}
+.map .map-section .run .run-more {
+  border-radius: 35rpx 0 0 35rpx;
+  padding-left: 30rpx;
+  background: linear-gradient(to bottom, #134aff, #c0efff);
+}
+.map .map-section .run .run-more .run-more-go {
+  color: #3b6cff;
+  margin-top: 30rpx;
+}
+.waitpopup {
+  width: 70vw;
+  height: 25vh;
+  background-color: #fff;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.waitpopup .settime {
+  font-size: 30px;
+  margin-top: 2vh;
+}
+.waitpopup .countDown {
+  height: 100rpx;
+  width: 100rpx;
+  background: linear-gradient(to top, #cbe6ff, #a0c6fe);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100rpx;
+  margin-top: 10rpx;
+}
+.window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background-color: #809ad7;
+  z-index: 2;
+  opacity: 0.9;
+}
+.window .wbox {
+  margin-top: 2vh;
+  margin-left: 5vw;
+  color: white;
+}
+.window .wbox .txt {
+  font-size: 30px;
+  font-weight: 500;
+}

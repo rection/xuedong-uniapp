@@ -84,7 +84,7 @@
 						}
 					},
 					{
-						"path": "sports/runMap",
+						"path": "sports/runmap",
 						"style": {
 							"navigationBarTitleText": "",
 							"enablePullDownRefresh": false
@@ -122,9 +122,16 @@
 				"root": "pages-chat",
 				"pages": [
 					{
-						"path": "chat/chat",
+						"path": "learn/learn",
 						"style": {
-							"navigationBarTitleText": "聊天",
+							"navigationBarTitleText": "学习",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "review/review",
+						"style": {
+							"navigationBarTitleText": "复习",
 							"enablePullDownRefresh": false
 						}
 					}
@@ -157,7 +164,7 @@
 			},
 			{
 			  "pagePath": "pages/chat/chat",
-			  "text": "聊天",
+			  "text": "学习",
 			  "iconPath": "static/tabs/chat1.png",
 			  "selectedIconPath": "static/tabs/chat1.png"
 			},

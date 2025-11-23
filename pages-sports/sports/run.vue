@@ -45,7 +45,7 @@
 </template>
 <script setup>
 	import {
-		ref
+		ref,reactive
 	} from "vue";
 	import {
 		onMounted
@@ -90,33 +90,197 @@
 		popup.value.close()
 	}
 	//跳转到地图页面
-	const goRunMap = () => {
-		uni.navigateTo({
-			url: "sports/runMap"
-		})
-	}
+// 修改 pages-sports/sports/run.vue
+
+const goRunMap = () => {
+    uni.navigateTo({
+        // 确保路径以 / 开头，且文件名全小写（和你的实际文件名一致）
+        url: "/pages-sports/sports/runmap", 
+        fail: (res) => {
+            console.error("跳转失败:", res);
+            uni.showToast({
+                title: "找不到页面，请检查pages.json",
+                icon: "none"
+            })
+        }
+    })
+}
 	//5s倒计时
-	const startCountdown = () => {
-		const timer = setInterval(() => {
-			if (countdown.value > 0) {
-				countdown.value--
-			} else {
-				clearInterval(timer);
-				countdown.value = 5;
-				uni.vibrateShort({
-					success() {
-						goRunMap()
-						closePopup()
-						isRun.value = true
-					}
-				})
-			}
-		}, 1000)
-	}
+// 修改 pages-sports/sports/run.vue
+
+const startCountdown = () => {
+    const timer = setInterval(() => {
+        if (countdown.value > 0) {
+            countdown.value--
+        } else {
+            clearInterval(timer);
+            countdown.value = 5;
+
+            // 1. 尝试震动 (如果设备支持就震，不支持也不报错卡死)
+            uni.vibrateShort({
+                fail: () => console.log('设备不支持震动，忽略')
+            });
+
+            // 2. 【关键】把跳转代码移到外面！无论震动是否成功，都要执行跳转！
+            goRunMap()
+            closePopup()
+            isRun.value = true
+        }
+    }, 1000)
+}
 	//中心精度
-	const longitude = ref(114.29963997797631);
+	const longitude = ref(114.201831);
 	// 中心维度
-	const latitude = ref(34.819942537402675);
+	const latitude = ref(34.827675);
+	const covers = reactive([{
+			id: 0,
+			title: 'map',
+			width: 40,
+			height: 40,
+			latitude: 34.82767, // 这里建议给个默认值，防止地图不显示图标
+			longitude: 114.201835,
+			iconPath: "../../static/images/ball.png",
+		}]);
+	const polygonsarray = [{
+		points: [{
+					latitude: 34.831042,
+					longitude:114.20018
+				},
+				{
+					latitude: 34.828483,
+					longitude: 114.200195
+				},
+				{
+					latitude: 34.826494,
+					longitude: 114.20039
+				},
+				{
+					latitude: 34.825798,
+					longitude: 114.200257
+				},
+				{
+					latitude: 34.824146,
+					longitude: 114.200257
+				},
+				{
+					latitude: 34.82402,
+					longitude: 114.20147
+				},
+				{
+					latitude: 34.824007,
+					longitude: 114.204526
+				},
+				{
+					latitude: 34.824096,
+					longitude: 114.205724
+				},
+				{
+					latitude: 34.8242,
+					longitude: 114.208264
+				},
+				{
+					latitude: 34.824704,
+					longitude: 114.209355
+				},
+				{
+					latitude: 34.824894,
+					longitude: 114.209892
+				}, //外圈
+				{
+					latitude: 34.825083,
+					longitude: 114.210046
+				},
+				{
+					latitude:34.825864,
+					longitude: 114.210061
+				},
+				{
+					latitude: 34.827453,
+					longitude: 114.210015
+				},
+				{
+					latitude: 34.829155,
+					longitude: 114.209985
+				},
+				{
+					latitude: 34.829445,
+					longitude: 114.209939
+				},
+				{
+					latitude: 34.82947,
+					longitude: 114.208157
+				},
+				{
+					latitude: 34.8301,
+					longitude: 114.208111
+				},
+				{
+					latitude: 34.830491,
+					longitude: 114.20808
+				},
+				{
+					latitude: 34.831134,
+					longitude: 114.20656
+				},
+				{
+					latitude: 34.831159,
+					longitude: 114.204333
+				},
+				{
+					latitude: 34.831096,
+					longitude: 114.20206
+				},
+				{
+					latitude: 34.831058,
+					longitude: 114.200278
+				},
+				{
+					latitude: 34.830763,
+					longitude: 114.20045
+				},
+				{
+					latitude: 34.829692,
+					longitude: 114.200366
+				},
+				{
+					latitude: 34.828172,
+					longitude: 114.200345
+				},
+				{
+					latitude: 34.82762,
+					longitude:114.200429
+				},
+				{
+					latitude: 34.827309,
+					longitude: 114.201586
+				},
+				{
+					latitude: 34.827326,
+					longitude:114.202554
+				},
+				{
+					latitude: 34.828311,
+					longitude: 114.202765
+				},
+				{
+					latitude: 34.830383,
+					longitude: 114.202807
+				},{
+					latitude: 34.830435,
+					longitude: 114.202849
+				},{
+					latitude: 34.830919,
+					longitude: 114.201628
+				},
+				{
+					latitude: 34.830901,
+					longitude:114.200513
+				}
+			],
+		strokeColor: "#1E90FF",
+		    fillColor: "#1E90FF33",
+		    width: 2
+	}];
 </script>
 
 <style lang="scss">
